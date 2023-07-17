@@ -1,21 +1,31 @@
 from math import isqrt
 from itertools import compress
 
+def primes_old(n):
+	'Primes to n inclusive'
+	# primes(19) --> 2 3 5 7 11 13 17 19
+	n += 1
+	sieve = bytearray((0, 1)) * (n // 2)
+	sieve[:3] = 0, 0, 0
+	for p in compress(range(isqrt(n) + 1), sieve):
+		sieve[p*p : n : p+p] = bytes(len(range(p*p, n, p+p)))
+	sieve[2] = 1
+	return (i for i, x in enumerate(sieve) if x) if n > 2 else iter([])
+
 
 def primes(n):
 	'Primes to n inclusive'
 	# primes(19) --> 2 3 5 7 11 13 17 19
 	if n < 2:
 		return iter([])
-	data = bytearray((0, 1, 0, 0, 0, 1)) * (n // 6 + 1)
-	data[1] = 0
-	limit = isqrt(n) + 1
-	for p in compress(range(limit), data):
-		data[p*p : n+1 : p+p] = bytes(len(range(p*p, n+1, p+p)))
-	data[2:4] = 1, 1
-	while len(data) > n + 1:
-		data.pop()
-	return (i for i, x in enumerate(data) if x)
+	sieve = bytearray((0, 1, 0, 0, 0, 1)) * (n // 6 + 1)
+	sieve[1] = 0
+	for p in compress(range(isqrt(n) + 1), sieve):
+		sieve[p*p : n+1 : p+p] = bytes(len(range(p*p, n+1, p+p)))
+	sieve[2:4] = 1, 1
+	while len(sieve) > n + 1:
+		sieve.pop()
+	return (i for i, x in enumerate(sieve) if x)
 
 
 def factor(n):
