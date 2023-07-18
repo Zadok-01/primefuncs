@@ -37,7 +37,7 @@ def primes_w30(n):
 	sieve[1] = 0
 	for p in compress(range(isqrt(n) + 1), sieve):
 		sieve[p*p : n+1 : p+p] = bytes(len(range(p*p, n+1, p+p)))
-	sieve[2:6] = 1,1,0,1
+	sieve[2:6] = 1, 1, 0, 1
 	while len(sieve) > n + 1:
 		sieve.pop()
 	return (i for i, x in enumerate(sieve) if x)
