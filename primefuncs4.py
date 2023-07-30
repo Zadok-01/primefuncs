@@ -52,7 +52,7 @@ def primes(max):
 
 
 def primesq(quant):
-	'Return list of primes up to a mximum value, inclusive.'
+	'Generates a given quantity of primes.'
 	if quant < 1:
 		return []
 	primes = [2]
