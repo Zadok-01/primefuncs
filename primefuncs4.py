@@ -177,9 +177,9 @@ def primerange(a, b=None):
 	'Generate all prime numbers in the range [2, a) or [a, b).'
 	if b is None:
 		a, b = 2, a
+	a, b = map(int, (a, b))
 	if a >= b:
 		return []
-	a, b = map(int, (a, b))
 	lo = lambda x: x < a
 	hi = lambda x: x < b
 	return dropwhile(lo, takewhile(hi, p_gen()))
