@@ -2,22 +2,26 @@
 
 
 __library__ = 'primefuncs'
-__version__ = '4.00'
+__version__ = '4.01'
 
 
-_all_simple = ('primes', 'primesq', 'is_prime', 'pfacts', 'pfacts2', 
-			'facts', 'facts2')
-
-_all_prime = ('p_gen', 'primequant', 'prime', 'primorial', 'primerange', 
+__all__ = 	(
+			# simple
+			'primes', 'primesq', 'is_prime', 'pfacts', 'pfacts2', 'facts', 
+			'facts2', 
+			
+			# prime
+			'p_gen', 'primequant', 'prime', 'primorial', 'primerange', 
 			'prime_count', 'isprime', 'prevprime', 'nextprime', 'randprime', 
-			'iscoprime', 'totient')
-
-_all_factors = ('pfactors', 'pfactors_mult', 'factors')
-
-_all_misc = ('prevodd', 'nextodd','preveven', 'nexteven', 'issquare', 
-			'isqrt_u', 'isqrt_lt', 'isqrt_gt', 'powerset', 'ilog', 'imod')
-
-__all__ = _all_simple + _all_prime + _all_factors + _all_misc
+			'iscoprime', 'totient', 
+			
+			# factors
+			'pfactors', 'pfactors_mult', 'factors', 
+			
+			# misc
+			'prevodd', 'nextodd','preveven', 'nexteven', 'issquare', 
+			'isqrt_u', 'isqrt_lt', 'isqrt_gt', 'powerset', 'ilog', 'imod', 
+			)
 
 
 from itertools import chain, combinations, count, cycle, dropwhile, \
@@ -79,7 +83,7 @@ def is_prime(n):
 		return n > 1
 	if not n % 2 or not n % 3:
 		return False
-	for i in range(5, insqrt(n) + 1, 6):
+	for i in range(5, isqrt(n) + 1, 6):
 		if not n % i or not n % (i + 2):
 			return False
 	return True
