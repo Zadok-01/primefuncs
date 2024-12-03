@@ -2,7 +2,7 @@
 
 
 from unittest import TextTestRunner, TestSuite, TestCase
-from primefuncs4 import *
+from primefuncs5 import *
 
 
 class Test_Simple(TestCase):
